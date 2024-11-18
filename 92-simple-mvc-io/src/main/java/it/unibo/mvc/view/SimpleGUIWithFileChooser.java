@@ -2,8 +2,13 @@ package it.unibo.mvc.view;
 
 import it.unibo.mvc.controller.Controller;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +22,7 @@ public final class SimpleGUIWithFileChooser {
     private final JFrame frame = new JFrame(TITLE);
 
     /**
-     * Crates a simpleGUI.
+     * Crates a simpleGUI with FileChooser though JFileChooser.
      */
     public SimpleGUIWithFileChooser() {
         final JPanel panel = new JPanel();
@@ -40,14 +45,20 @@ public final class SimpleGUIWithFileChooser {
         //actions
         saveButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 controller.write(centralTextArea.getText());
             }
         });
         fileChooserButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
+                final JFileChooser fileChooser = new JFileChooser();
+                final int returnVal = fileChooser.showOpenDialog(fileChooserButton);
 
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    controller.setCurrentFile(fileChooser.getSelectedFile());
+                    textFieldForPath.setText(controller.getCurrentFilePath());
+                }
             }
         });
         //frame setters
