@@ -54,14 +54,13 @@ public class Controller {
      * Write in the current file the input given.
      *
      * @param input will be written in the current file
-     * @return true if the operation as been successful
      */
-    public boolean write(final String input) {
+    public void write(final String input) {
         try (PrintStream ps = new PrintStream(this.getCurrentFilePath(), StandardCharsets.UTF_8)) {
             ps.print(input);
-            return true;
+            //return true; //de-comment here if .write() should now return a success status
         } catch (IOException ioException) {
-            return false;
+            //return false;
         }
     }
 }
