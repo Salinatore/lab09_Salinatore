@@ -31,7 +31,7 @@ public final class SimpleGUI {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                var hasSucceed = controller.write(textArea.getText());
+                controller.write(textArea.getText());
             }
         });
         frame.setContentPane(panel);
