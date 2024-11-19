@@ -46,21 +46,17 @@ public final class SimpleGUI {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 controller.setNextStringToPrint(upperTextField.getText());
-                try {
-                    controller.printStdoutCurrentString();
-                } catch (IllegalStateException exception) {
-                    System.out.println("No String to print...");
-                }
+                controller.printStdoutCurrentString();
             }
         });
         southShowHistoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                StringBuilder allStrings = new StringBuilder("Stings: ");
-                for (var string : controller.getAllPrintedStringHistory()) {
-                    allStrings.append("[");
-                    allStrings.append(string);
-                    allStrings.append("] ");
+                final StringBuilder allStrings = new StringBuilder("Stings: ");
+                for (final var string : controller.getAllPrintedStringHistory()) {
+                    allStrings.append('[')
+                            .append(string)
+                            .append("] ");
                 }
                 centralTextArea.setText(allStrings.toString());
             }

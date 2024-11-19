@@ -31,6 +31,6 @@ public interface Controller {
      * Prints in stdout the current string.
      * @throws IllegalStateException if the current string is unset
      */
-    void printStdoutCurrentString() throws IllegalStateException;
+    void printStdoutCurrentString();
 
 }

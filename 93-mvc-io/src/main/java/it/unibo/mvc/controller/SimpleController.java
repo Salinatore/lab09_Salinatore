@@ -30,11 +30,11 @@ public final class SimpleController implements Controller {
     }
 
     @Override
-    public void printStdoutCurrentString() throws IllegalStateException {
+    public void printStdoutCurrentString() {
         if (Objects.isNull(this.currentString)) {
             throw new IllegalStateException("String must be not null");
         } else {
-            System.out.println(this.currentString);
+            System.out.println(this.currentString); // NOPMD: is just an exercise
             allAllPrintedStringHistory.add(this.currentString);
             this.currentString = null;
         }
